@@ -17,7 +17,6 @@ public class Inicio {
 			System.out.print(ler.getTabelaDados()[i][1]+"\n");
 			
 		}
-		// TODO Auto-generated method stub
 
 	}
 
