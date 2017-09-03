@@ -3,22 +3,16 @@ package pupila;
 public class Inicio {
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("width \t height");
 		LeitorTXT ler = new LeitorTXT();
-		int tamanho;
+		Limpeza limpa = new Limpeza();
+		Grava salvar = new Grava();
 
 		ler.LerOlho(0);
-		tamanho=ler.getQtdDados();
+		ler.mediaLargAlt();
+		limpa.Limpa();
+		limpa.Suaviza();
+		salvar.Gravar("vetor",ler.getPasta(),limpa.getSuave());
 		
-		//apenas teste
-		for (int i=0; i<tamanho;i++) {
-			
-			System.out.print(ler.getTabelaDados()[i][0]+"\t");
-			System.out.print(ler.getTabelaDados()[i][1]+"\n");
-			
-		}
-		
-
 	}
 
 }

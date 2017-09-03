@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 public class LeitorTXT {
 	
-	private String arq, linhaObtida, primeiraColuna;
+	private String arq, linhaObtida, primeiraColuna, pasta;
 	private String[] linhaDados, separaColunas;
 	private int i=0;
 	private static double[][] tabelaDados;
@@ -26,6 +26,7 @@ public class LeitorTXT {
 		if (result == JFileChooser.APPROVE_OPTION) {
 			arq = selArq.getSelectedFile().getPath();
 			JOptionPane.showMessageDialog(null, "Abrindo arquivo em: \n" + arq);
+			pasta=selArq.getSelectedFile().getParent();
 		}else if (result ==JFileChooser.CANCEL_OPTION) {
 			JOptionPane.showMessageDialog(null, "Operação cancelada.");
 			System.exit(1);
@@ -92,6 +93,10 @@ public class LeitorTXT {
 	
 	public int getQtdDados() {
 		return qtdDados;
+	}
+	
+	public String getPasta() {
+		return pasta;
 	}
 
 }

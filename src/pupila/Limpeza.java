@@ -41,4 +41,9 @@ public class Limpeza {
 			vetorSuave[i]=(vetorLimpo[i-2]+vetorLimpo[i-1]+vetorLimpo[i])/3;
 		}
 	}
+	
+	public double[] getSuave() {
+		return vetorSuave;
+	}
+	
 }
