@@ -13,6 +13,7 @@ public class LeitorTXT {
 	private int i=0;
 	private static double[][] tabelaDados;
 	private static int qtdDados=0;
+	private static double[] vetorPupila;
 	
 	public void LerOlho(int olho) throws Exception{
 		JFileChooser selArq = new JFileChooser();
@@ -72,6 +73,17 @@ public class LeitorTXT {
 		}
 	
 		
+	}
+	
+	public void mediaLargAlt() {
+		vetorPupila = new double[qtdDados];
+		for (int i=0; i<qtdDados; i++) {
+			vetorPupila[i]=(tabelaDados[i][0]+tabelaDados[i][1])/2;
+		}
+	}
+	
+	public double[] getVetorPupila() {
+		return vetorPupila;
 	}
 	
 	public double[][] getTabelaDados(){
