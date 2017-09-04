@@ -23,7 +23,7 @@ public class Grava {
 		
 		try {
 			File f = new File(arquivo);
-			FileWriter fw = new FileWriter(f,true);
+			FileWriter fw = new FileWriter(f,false);
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write(vetorTab);
 			bw.flush();
@@ -32,5 +32,11 @@ public class Grava {
 		}catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e, "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
+		
+		
+	}
+	
+	public String getVetorTab() {
+		return vetorTab;
 	}
 }

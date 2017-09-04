@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 public class LeitorTXT {
 	
-	private String arq, linhaObtida, primeiraColuna, pasta;
+	private static String arq, linhaObtida, primeiraColuna, pasta;
 	private String[] linhaDados, separaColunas;
 	private int i=0;
 	private static double[][] tabelaDados;
@@ -17,7 +17,7 @@ public class LeitorTXT {
 	
 	public void LerOlho(int olho) throws Exception{
 		JFileChooser selArq = new JFileChooser();
-		selArq.setCurrentDirectory(new File ("C:\\"));
+		selArq.setCurrentDirectory(new File (""));
 		selArq.setSelectedFile(new File (""));
 		selArq.setDialogTitle("Abrir arquivo de dados.");
 		
@@ -28,8 +28,7 @@ public class LeitorTXT {
 			JOptionPane.showMessageDialog(null, "Abrindo arquivo em: \n" + arq);
 			pasta=selArq.getSelectedFile().getParent();
 		}else if (result ==JFileChooser.CANCEL_OPTION) {
-			JOptionPane.showMessageDialog(null, "Operação cancelada.");
-			System.exit(1);
+			JOptionPane.showMessageDialog(null, "Nenhum arquivo selecionado.");
 		}else if (result == JFileChooser.ERROR_OPTION) {
 			JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo de dados.");
 		}
@@ -97,6 +96,10 @@ public class LeitorTXT {
 	
 	public String getPasta() {
 		return pasta;
+	}
+	
+	public String getArq() {
+		return arq;
 	}
 
 }
