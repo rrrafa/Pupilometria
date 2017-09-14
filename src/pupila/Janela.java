@@ -4,29 +4,27 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.JPanel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 import javax.swing.border.TitledBorder;
-import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+import javax.swing.JEditorPane;
+import java.awt.Font;
 
 public class Janela {
 
 	private JFrame frmD;
 	public JTextField txtKjh;
-	private JTextField textField;
 	private JTextField textField_1;
+	private ButtonGroup group;
 
 	/**
 	 * Launch the application.
@@ -81,9 +79,11 @@ public class Janela {
 		frmD = new JFrame();
 		frmD.setResizable(false);
 		frmD.setTitle("Pupilometria - Tratamento de resultados");
-		frmD.setBounds(100, 100, 537, 322);
+		frmD.setBounds(100, 100, 537, 457);
 		frmD.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmD.getContentPane().setLayout(null);
+		
+		
 		
 		JButton btnNewButton = new JButton("Buscar...");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -92,8 +92,7 @@ public class Janela {
 				
 				try {leitura.LerOlho(0);}catch(Exception e) {}
 				txtKjh.setText(leitura.getArq());
-				textField.setText(leitura.getPasta()+"\\vetor.txt");
-				
+								
 			}
 		});
 		btnNewButton.setBounds(304, 34, 77, 23);
@@ -110,16 +109,6 @@ public class Janela {
 		lblLocalDoArquivo.setBounds(10, 11, 245, 23);
 		frmD.getContentPane().add(lblLocalDoArquivo);
 		
-		textField = new JTextField();
-		textField.setToolTipText("Caminho padr\u00E3o igual ao original");
-		textField.setBounds(10, 93, 282, 20);
-		frmD.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblArquivoDeDados = new JLabel("Arquivo de dados corrigido:");
-		lblArquivoDeDados.setBounds(10, 76, 191, 14);
-		frmD.getContentPane().add(lblArquivoDeDados);
-		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Olho examinado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(402, 29, 116, 84);
@@ -132,19 +121,26 @@ public class Janela {
 		panel.add(rdbtnDireito);
 		
 		JRadioButton rdbtnEsquerdo = new JRadioButton("Esquerdo");
+		rdbtnEsquerdo.setSelected(false);
 		rdbtnEsquerdo.setBounds(6, 54, 71, 23);
 		panel.add(rdbtnEsquerdo);
 		
+		group = new ButtonGroup();
+		
+		group.add(rdbtnDireito);
+		group.add(rdbtnEsquerdo);
+		
+		
 		textField_1 = new JTextField();
-		textField_1.setBounds(10, 252, 508, 23);
+		textField_1.setBounds(10, 388, 508, 23);
 		frmD.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblVetorCorrigidoseparado = new JLabel("Vetor corrigido (separado por tabula\u00E7\u00F5es):");
-		lblVetorCorrigidoseparado.setBounds(10, 227, 211, 14);
+		lblVetorCorrigidoseparado.setBounds(10, 363, 211, 14);
 		frmD.getContentPane().add(lblVetorCorrigidoseparado);
 		
-		JButton btnExecutar = new JButton("EXECUTAR");
+		JButton btnExecutar = new JButton("EXECUTAR LIMPEZA");
 		btnExecutar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				LeitorTXT le = new LeitorTXT();
@@ -159,8 +155,34 @@ public class Janela {
 				textField_1.copy();
 			}
 		});
-		btnExecutar.setBounds(10, 153, 169, 33);
+		btnExecutar.setBounds(10, 80, 231, 33);
 		frmD.getContentPane().add(btnExecutar);
+		
+		JButton btnSalvar = new JButton("SALVAR");
+		btnSalvar.setBounds(251, 80, 130, 33);
+		frmD.getContentPane().add(btnSalvar);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(10, 135, 511, 20);
+		frmD.getContentPane().add(separator);
+		
+		JEditorPane editorPane = new JEditorPane();
+		editorPane.setBounds(10, 191, 238, 146);
+		frmD.getContentPane().add(editorPane);
+		
+		JEditorPane editorPane_1 = new JEditorPane();
+		editorPane_1.setBounds(275, 191, 231, 146);
+		frmD.getContentPane().add(editorPane_1);
+		
+		JLabel lblOriginal = new JLabel("ORIGINAL");
+		lblOriginal.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblOriginal.setBounds(10, 166, 77, 14);
+		frmD.getContentPane().add(lblOriginal);
+		
+		JLabel lblCorrigido = new JLabel("CORRIGIDO");
+		lblCorrigido.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCorrigido.setBounds(275, 166, 84, 14);
+		frmD.getContentPane().add(lblCorrigido);
 	}
 	
 	public void setTxt(String txt) {
